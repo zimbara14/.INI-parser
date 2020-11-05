@@ -174,7 +174,6 @@ void Parser::parse(const std::string& filename){
                 if(findSection(name)) throw std::runtime_error("Error! A section with the same name already exists."); // checking for section duplicates and error-ing
                 
                 for(std::string line2; std::getline(in, line2); ){
-//                    if(line2.empty()) throw std::runtime_error ("Error! Section cannot be empty.");
                     findComment(line2);
                     ltrim(rtrim(line2));
                     if(line2[0] == ';' || line2.empty()) break;
@@ -186,9 +185,7 @@ void Parser::parse(const std::string& filename){
                     if(is_valid(new_pair.first)) throw std::runtime_error("Error! Invalid name of a key.");
                     if(is_value(new_pair.second)) throw std::runtime_error("Error! Invalid name of a value.");
                     
-                    if(new_pair.first != " " && new_pair.second != " ") makeNewSection(name, new_pair.first, new_pair.second);
-                    
-//                    undefinedParameter(line2); // neither section nor comment
+                    if(new_pair.first != " " && new_pair.second != " ") makeNewSection(name, new_pair.first, new_pair.second);                    
                 }
             } else {
                 throw std::runtime_error ("Error! Invalid name of a section.");
